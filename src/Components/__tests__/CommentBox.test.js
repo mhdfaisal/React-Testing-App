@@ -18,13 +18,28 @@ it('shows a textarea and a button', ()=>{
 
 })
 
-it('has a textarea that users can type in', ()=>{
-    wrapped.find('textarea').simulate('change', {
-        target:{
-            value:'some text'
-        }
-    });
+describe('the text area', ()=>{
+    beforeEach(()=>{
+        wrapped.find('textarea').simulate('change', {
+            target:{
+                value:'some text'
+            }
+        });
+    
+        wrapped.update();
+    })
 
+    it('has a textarea that users can type in', ()=>{
     expect(wrapped.find('textarea').prop('value')).toEqual('some text');
+    })
+    
+    it('when form gets submitted, textarea get emptied', ()=>{
+    
+        wrapped.find('form').simulate('submit');
+        wrapped.update();
+    
+        expect(wrapped.find('textarea').prop('value')).toEqual("");
+    })
 })
+
 
