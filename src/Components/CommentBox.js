@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {saveComment} from './actions/index';
 
 class CommentBox extends React.Component{
 
@@ -10,7 +12,7 @@ class CommentBox extends React.Component{
 
     handleSubmit = (e)=>{
         e.preventDefault();
-
+        this.props.saveComment(this.state.comment);
         this.setState({comment:''});
     }
 
@@ -25,4 +27,9 @@ class CommentBox extends React.Component{
     }
 }
 
-export default CommentBox;
+const mapStateToProps = (state, ownProps)=>{
+    console.log(ownProps)
+    return {comments: state.comments};
+}
+
+export default connect(mapStateToProps, {saveComment})(CommentBox);

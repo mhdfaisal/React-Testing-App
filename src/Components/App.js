@@ -5,10 +5,10 @@ class App extends React.Component{
 
     render(){
         return(
-            <>
+                <>
                 <CommentBox />
                 <CommentList />
-            </>
+                </>
         )
     }
 }
